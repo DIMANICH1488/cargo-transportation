@@ -35,9 +35,10 @@ public final class DriverController {
     @PostMapping
     public ResponseEntity<Driver> create(@RequestBody DriverItem driver) {
         try {
+            Long userId = driver.getUserId();
             String info = driver.getInfo();
             Integer status = driver.getStatus();
-            Driver item = driverService.create(info, status);
+            Driver item = driverService.create(userId, info, status);
             return ResponseEntity.ok(item);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -47,9 +48,10 @@ public final class DriverController {
     @PatchMapping("/{id}")
     public ResponseEntity<Driver> update(@PathVariable long id, @RequestBody DriverItem driver) {
         try {
+            Long userId = driver.getUserId();
             String info = driver.getInfo();
             Integer status = driver.getStatus();
-            Driver item = driverService.update(id, info, status);
+            Driver item = driverService.update(id, userId, info, status);
             return ResponseEntity.ok(item);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();

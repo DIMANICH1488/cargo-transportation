@@ -16,10 +16,12 @@ public final class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long userId;
     private String info;
     private Integer status;
 
-    public Driver(String info, Integer status) {
+    public Driver(Long userId, String info, Integer status) {
+        this.userId = userId;
         this.info = info;
         this.status = status;
     }
